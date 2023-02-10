@@ -1,0 +1,58 @@
+{
+  "name": "gatsby-starter-contentful-homepage",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "gatsby develop",
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "gatsby-provision": "gatsby-provision-contentful --contentful-data-path='./scripts/data.json' --space-id=$CONTENTFUL_SPACE_ID --management-token=$CONTENTFUL_MANAGEMENT_TOKEN",
+    "setup": "node ./scripts/setup.js",
+    "export-content": "contentful space export --space-id=$SPACE_ID --management-token=$MANAGEMENT_TOKEN --export-dir=scripts --content-file=data.json"
+  },
+  "dependencies": {
+    "@contentful/rich-text-html-renderer": "^16.0.3",
+    "@emotion/react": "^11.10.8",
+    "@fontsource/dm-mono": "^4.5.9",
+    "@fontsource/dm-sans": "^4.5.8",
+    "@mdx-js/react": "^2.3.0",
+    "@theme-ui/mdx": "^0.15.7",
+    "@theme-ui/preset-tailwind": "^0.15.7",
+    "@vanilla-extract/babel-plugin": "^1.2.0",
+    "@vanilla-extract/css": "^1.11.0",
+    "@vanilla-extract/css-utils": "^0.1.2",
+    "@vanilla-extract/webpack-plugin": "^2.1.12",
+    "gatsby": "^5.9.0",
+    "gatsby-plugin-image": "^3.9.0",
+    "gatsby-plugin-manifest": "^5.9.0",
+    "gatsby-plugin-sharp": "^5.9.0",
+    "gatsby-plugin-theme-ui": "^0.15.7",
+    "gatsby-plugin-vanilla-extract": "^4.0.1",
+    "gatsby-source-contentful": "^8.9.1",
+    "gatsby-source-filesystem": "^5.9.0",
+    "gatsby-transformer-sharp": "^5.9.0",
+    "is-absolute-url": "^4.0.1",
+    "polished": "^4.2.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-feather": "^2.0.9",
+    "react-spring": "^9.7.1",
+    "sharp": "^0.32.1",
+    "theme-ui": "^0.15.7"
+  },
+  "devDependencies": {
+    "chalk": "5.2.0",
+    "contentful-cli": "^2.5.3",
+    "contentful-import": "^8.5.49",
+    "gatsby-provision-contentful": "^0.0.5",
+    "husky": "^8.0.3",
+    "inquirer": "^9.2.0",
+    "lint-staged": "^13.2.2",
+    "prettier": "2.8.8",
+    "yargs-parser": "^21.0.0"
+  }
+}
