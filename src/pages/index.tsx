@@ -22,7 +22,7 @@ export const query = graphql`
         slug
         media {
           id
-          gatsbyImageData
+          gatsbyImageData(aspectRatio: 1.77777777778)
         }
       }
     }
