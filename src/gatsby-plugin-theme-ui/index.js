@@ -3,7 +3,8 @@ import tailwind from "@theme-ui/preset-tailwind"
 
 const theme = merge(tailwind, {
   config: {
-    initialColorModeName: `dark`,
+    initialColorModeName: `light`,
+    useLocalStorage: false,
   },
   colors: {
     primary: tailwind.colors.blue[4],
@@ -20,7 +21,7 @@ const theme = merge(tailwind, {
       light: {
         text: tailwind.colors.gray[8],
         primary: tailwind.colors.blue[6],
-        background: tailwind.colors.gray[1],
+        background: `#f7fafc`, //tailwind.colors.gray[1]
         backgroundPattern: `#F1F4F7`,
         iconPrimary: tailwind.colors.gray[8],
         iconSecondary: tailwind.colors.gray[6],
