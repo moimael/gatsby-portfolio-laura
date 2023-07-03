@@ -36,6 +36,9 @@ export type EmiliaProjectProps = {
     // date: string
     slug: string
     title: string
+    description?: {
+      description: string
+    }
     // areas: string[]
     media: {
       title: string
@@ -47,7 +50,7 @@ export type EmiliaProjectProps = {
 
 const Project: React.FC<
   React.PropsWithChildren<PageProps<EmiliaProjectProps>>
-> = ({ data: { contentfulProject }, children }) => {
+> = ({ data: { contentfulProject } }) => {
   const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(0)
 
@@ -72,7 +75,7 @@ const Project: React.FC<
     <Layout>
       <HeaderProject
         title={contentfulProject.title}
-        description={children}
+        description={contentfulProject.description?.description}
         // areas={contentfulProject.areas}
         // date={contentfulProject.date}
       />
