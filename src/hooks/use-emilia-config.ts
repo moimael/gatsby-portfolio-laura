@@ -14,20 +14,16 @@ type UseEmiliaConfigProps = {
 }
 
 const useEmiliaConfig = () => {
-  // const data = useStaticQuery<UseEmiliaConfigProps>(graphql`
-  //   query {
-  //     emiliaConfig {
-  //       name
-  //       location
-  //       socialMedia {
-  //         href
-  //         title
-  //       }
-  //       showThemeAuthor
-  //       assetsPath
-  //     }
-  //   }
-  // `)
+  const { allContentfulSocialMedia } = useStaticQuery(graphql`
+    query {
+      allContentfulSocialMedia {
+        nodes {
+          url
+          title
+        }
+      }
+    }
+  `)
 
   // return data.emiliaConfig
 
@@ -36,8 +32,8 @@ const useEmiliaConfig = () => {
     location: "Lyon",
     socialMedia: [
       {
-        href: "",
-        title: "Twitter",
+        href: allContentfulSocialMedia?.nodes[0]?.url,
+        title: allContentfulSocialMedia?.nodes[0]?.title,
       },
     ],
     showThemeAuthor: false,
