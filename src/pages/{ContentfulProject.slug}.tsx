@@ -8,6 +8,9 @@ import Layout from "../components/layout"
 import HeaderProject from "../components/header-project"
 import Seo from "../components/seo"
 import Video from "../components/video"
+import Lightbox from "yet-another-react-lightbox"
+import "yet-another-react-lightbox/styles.css"
+import { useState } from "react"
 
 export const query = graphql`
   query ($id: String) {
@@ -45,12 +48,25 @@ export type EmiliaProjectProps = {
 const Project: React.FC<
   React.PropsWithChildren<PageProps<EmiliaProjectProps>>
 > = ({ data: { contentfulProject }, children }) => {
+  const [open, setOpen] = useState(false)
+  const [index, setIndex] = useState(0)
+
   const imageFade = useSpring({
     config: config.slow,
     delay: 800,
     from: { opacity: 0 },
     to: { opacity: 1 },
   })
+
+  const handlePreview = (index: number) => {
+    setOpen(true)
+    setIndex(index)
+  }
+
+  const handlePreviewClose = () => {
+    setOpen(false)
+    setIndex(0)
+  }
 
   return (
     <Layout>
@@ -59,6 +75,26 @@ const Project: React.FC<
         description={children}
         // areas={contentfulProject.areas}
         // date={contentfulProject.date}
+      />
+      <Lightbox
+        open={open}
+        close={handlePreviewClose}
+        index={index}
+        slides={contentfulProject.media.map((image) => image)}
+        render={{
+          slide: ({
+            slide,
+          }: {
+            slide: {
+              title: string
+              gatsbyImageData: IGatsbyImageData
+            }
+          }) => {
+            return (
+              <GatsbyImage image={slide.gatsbyImageData} alt={slide.title} />
+            )
+          },
+        }}
       />
       <Container sx={{ mt: [`-6rem`, `-6rem`, `-8rem`] }}>
         {contentfulProject.video && (
@@ -74,14 +110,16 @@ const Project: React.FC<
             paddingRight: "0 !important",
           }}
         >
-          {contentfulProject.media.map((image) => (
+          {contentfulProject.media.map((image, index) => (
             <animated.div
+              onClick={() => handlePreview(index)}
               key={image.title}
               style={{
                 ...imageFade,
                 flex: 1,
                 flexBasis: "calc(50% - 20px)",
                 maxWidth: "calc(50% - 20px)",
+                cursor: "pointer",
               }}
             >
               <GatsbyImage
